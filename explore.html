@@ -19,6 +19,11 @@
 .themebar button{appearance:none;border:1px solid #D8D8D6;background:#fff;color:#0A0A0A;font:600 11px/1 'Helvetica Neue',Arial,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:9px 17px;cursor:pointer;transition:background .15s,color .15s}
 .themebar button:first-of-type{border-radius:8px 0 0 8px}.themebar button:last-of-type{border-radius:0 8px 8px 0;border-left:0}
 .themebar button.on{background:#0A0A0A;color:#FFC72C;border-color:#0A0A0A}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin:22px 44px 2px}
+.tab{appearance:none;border:1px solid #D8D8D6;background:#fff;color:#0A0A0A;font:600 12px/1 'Helvetica Neue',Arial,sans-serif;letter-spacing:.02em;padding:11px 16px;border-radius:9px;cursor:pointer;transition:background .15s,color .15s}
+.tab.on{background:#0A0A0A;color:#FFC72C;border-color:#0A0A0A}
+body.dark .tab{background:#161618;color:#EDEDED;border-color:#3A3A3C}body.dark .tab.on{background:#FFC72C;color:#0A0A0A;border-color:#FFC72C}
+body.light .tab{background:#fff;color:#0A0A0A;border-color:#D8D8D6}body.light .tab.on{background:#0A0A0A;color:#FFC72C;border-color:#0A0A0A}
 body.dark{background:#0C0C0D;color:#EDEDED}
 body.dark .card{background:#161618;border-color:#2A2A2C}
 body.dark .canvas{background:#161618}
@@ -58,4 +63,5 @@ body{background:#0C0C0D;color:#EDEDED}
 function copySig(id,btn){var el=document.getElementById(id);var r=document.createRange();r.selectNode(el);var s=window.getSelection();s.removeAllRanges();s.addRange(r);try{document.execCommand('copy')}catch(e){}s.removeAllRanges();var t=btn.textContent;btn.textContent='Copied to clipboard';btn.classList.add('done');setTimeout(function(){btn.textContent=t;btn.classList.remove('done')},1600)}
 function dlFile(url,name){fetch(url).then(function(r){return r.text()}).then(function(t){var b=new Blob([t],{type:'text/html'});var a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);setTimeout(function(){URL.revokeObjectURL(a.href)},1500)}).catch(function(){window.open(url,'_blank')})}
 function setTheme(d){var b=document.body;b.classList.remove('dark','light');b.classList.add(d?'dark':'light');var L=document.getElementById('tL'),D=document.getElementById('tD');if(L&&D){L.classList.toggle('on',!d);D.classList.toggle('on',!!d);}}
+function showTab(k){var ps=document.querySelectorAll('.tabpanel');for(var i=0;i<ps.length;i++){ps[i].style.display='none';}var el=document.getElementById('tab-'+k);if(el){el.style.display='';}var bs=document.querySelectorAll('.tab');for(var j=0;j<bs.length;j++){bs[j].classList.remove('on');}var b=document.getElementById('tb-'+k);if(b){b.classList.add('on');}}
 </script></body></html>
